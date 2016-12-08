@@ -72,3 +72,15 @@ div.panel-heading {
 .modal-wide .modal-body {
   overflow-y: auto;
 }
+.center-fix {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.main-spinner {
+    font-size: 3em;
+    color: color(primary);
+}

@@ -9,7 +9,9 @@
 
 
         <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
-
+        <div *ngIf="!(projects && projects.length)">
+            <i class="center-fix main-spinner fa fa-spin fa-spinner" ></i>
+            </div>
         <div class='table-responsive'>
             <table class='table' *ngIf='projects && projects.length'>
                 <thead>
