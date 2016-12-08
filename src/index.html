@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- base url -->
+  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <title><%= htmlWebpackPlugin.options.title %></title>
 
@@ -14,8 +16,7 @@
   <%= webpackConfig.htmlElements.headTags %>
   <% } %>
 
-  <!-- base url -->
-  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
+
 
 
 </head>
@@ -27,7 +28,7 @@
   </app>
 
   <!-- Google Analytics: change UA-71073175-1 to be your site's ID -->
-  <script>
+  <!--<script>
     (function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=r;A[l]=A[l]||function(){
     (A[l].q=A[l].q||[]).push(arguments)},A[l].l=1*new Date();a=n.createElement(g),
     r=n.getElementsByTagName(g)[0];a.async=1;a.src=u;r.parentNode.insertBefore(a,r)
@@ -35,7 +36,7 @@
 
     ga('create', 'UA-71073175-1', 'auto');
     ga('send', 'pageview');
-  </script>
+  </script>-->
 
   <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
   <!-- Webpack Dev Server reload -->
