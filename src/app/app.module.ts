@@ -18,6 +18,8 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLarge } from './home/x-large';
+import { SharedModule } from './shared/index';
+import { LoginModule } from './login/index';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -41,13 +43,15 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     NoContentComponent,
-    XLarge
+    XLarge,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, {  })
+    LoginModule,
+    RouterModule.forRoot(ROUTES, {  }),
+     SharedModule.forRoot()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

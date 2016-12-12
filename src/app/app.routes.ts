@@ -4,13 +4,14 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 
 import { DataResolver } from './app.resolver';
-
+import {LoggedInGuard} from './shared/index';
+import {LoginComponent} from './login/index';
 
 export const ROUTES: Routes = [
   { path: '',      component: HomeComponent },
   { path: 'home',  component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-   { path: 'projects',loadChildren:'./project/project.module#ProjectModule' },
+   { path: 'login', component: LoginComponent },
+   { path: 'projects',loadChildren:'./project/project.module#ProjectModule?',canLoad:[LoggedInGuard] },
     { path: 'todolist',loadChildren:'./todolist/todolist.module#TodolistModule' },
   {
     path: 'detail', loadChildren: () => System.import('./+detail')

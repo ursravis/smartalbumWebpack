@@ -24,10 +24,12 @@ const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
+const API_URL = process.env.API_URL = 'http://smartalbumwebapi.azurewebsites.net/api/projects';
 const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
+    API_URL: API_URL,
   HMR: false
 });
 var path = require("path");
@@ -121,10 +123,12 @@ resolveLoader: {moduleExtensions : ['-loader']},
       new DefinePlugin({
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
+         'API_URL': JSON.stringify(METADATA.API_URL),
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
           'HMR': METADATA.HMR,
+          'API_URL' : JSON.stringify(METADATA.API_URL),
         }
       }),
 
