@@ -12,8 +12,14 @@
 			</div>
 			<div class="form-group">
 				<label>Images</label>
-				<label class="btn btn-default btn-file"><input type="file" multiple (change)="fileChange(input)" #input />
-        </label>
+		
+                    <div class="uploader" onclick="$('#filePhoto').click()">
+                    Drop Images here.
+                    <input type="file" name="userprofile_picture"  multiple id="filePhoto"  (change)="fileChange(input)"   #input />
+                    </div>
+                    <!--<input type="file" multiple (change)="fileChange(input)" #input />
+                    
+                <div ng2FileDrop class="custom-component-drop-zone" (ng2FileDropFileAccepted)="dragFileAccepted($event)" ></div>--> 
 
 
 			</div>
@@ -149,10 +155,10 @@
 
 		</div>
 	</div>
-    <div *ngIf="loading" style=" opacity: 1;
+	<div *ngIf="loading" style=" opacity: 1;
     animation: fade 2s linear;">
-    <i class="center-fix main-spinner fa fa-spin fa-spinner" ></i>
-    </div>
+		<i class="center-fix main-spinner fa fa-spin fa-spinner"></i>
+	</div>
 	<div class='panel-footer'>
 		<a class='btn btn-default' (click)='onBack()' style='width:80px'>
 			<i class='glyphicon glyphicon-chevron-left'></i> Back

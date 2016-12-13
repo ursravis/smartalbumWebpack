@@ -12,7 +12,8 @@ import { Subscription }       from 'rxjs/Subscription';
 //var Cropper =require('cropperjs/dist/cropper.js');
 //var Cropper=System.import("cropperjs");
 
-@Component({templateUrl:'./project-details.component.html'})
+@Component({templateUrl:'./project-details.component.html',
+    styleUrls: ['./project-details.component.css']})
 export class ProjectDetailsComponent implements OnInit,OnDestroy {
     pageTitle:string='Project Details';
     project:IProject;
