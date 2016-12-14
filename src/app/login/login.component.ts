@@ -12,6 +12,8 @@ export class LoginComponent {
   user:User;
   constructor(private userService: UserService, private router: Router) {
     this.user=new User();
+    this.user.userName="test";
+    this.user.password="test";
   }
 
   onSubmit():void {

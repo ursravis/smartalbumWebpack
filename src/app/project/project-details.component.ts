@@ -49,6 +49,30 @@ ngOnInit():void{
 
                 }
         });
+        var dropbox;
+
+    // dropbox = document.getElementById("dropbox");
+    // dropbox.addEventListener("dragenter", this.dragenter, false);
+    // dropbox.addEventListener("dragover", this.dragover, false);
+    // dropbox.addEventListener("drop", this.drop, false);
+}
+ dragenter(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+
+dragover(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+ drop(e) {
+  e.stopPropagation();
+  e.preventDefault();
+
+  var dt = e.dataTransfer;
+  var files = dt.files;
+
+  this.handleFiles(files);
 }
 OnSaveClick():void{
     this.loading=true;
@@ -157,11 +181,17 @@ this.disableEdits=true;
     // This is called when the user selects new files from the upload button
     fileChange(input:any){
 
-        // Loop through each picture file
-        for (var i = 0; i < input.files.length; i++) {
+        this.handleFiles(input.files);
+      
+    }
+
+    handleFiles(files:File[])
+    {
+// Loop through each picture file
+        for (var i = 0; i < files.length; i++) {
 
             //this.files.push(input.files[i]);
-            var file=input.files[i];
+            var file=files[i];
 
             // Create an img element and add the image file data to it
             var img = document.createElement("img");
@@ -188,9 +218,8 @@ this.disableEdits=true;
                 this.project.images.push(imageData);
             }, false);
 
-            reader.readAsDataURL(input.files[i]);
+            reader.readAsDataURL(files[i]);
         }
-      
     }
 
         createThumbnail(img:any,MAX_Pixel:number=64,imageType:string='image/jpeg')

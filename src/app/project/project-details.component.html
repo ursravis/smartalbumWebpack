@@ -13,8 +13,12 @@
 			<div class="form-group">
 				<label>Images</label>
 		
-                    <div class="uploader" onclick="$('#filePhoto').click()">
-                    Drop Images here.
+                    <div class="uploader" onclick="$('#filePhoto').click()" id="dropbox" 
+                    (dragenter)="dragenter($event)"
+                     (dragover)="dragover($event)"
+                      (drop)="drop($event)"
+                    >
+                    Drop or click to upload Images here.
                     <input type="file" name="userprofile_picture"  multiple id="filePhoto"  (change)="fileChange(input)"   #input />
                     </div>
                     <!--<input type="file" multiple (change)="fileChange(input)" #input />
