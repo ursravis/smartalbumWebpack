@@ -13,20 +13,22 @@ export class TodolistComponent {
 
     constructor() {
         this.showCompleted = true;
-        this.todo = new Todo('Add me to list!', false);
+        this.todo = new Todo('Add me to list!', false,0);
         this.list = [
-            new Todo('Its cool'),
-            new Todo('Hello', true)
+            new Todo('Its cool',false,1),
+            new Todo('Hello', true,2)
         ];
     }
 
     addTodo() {
-        this.list = this.list.concat(Todo.clone(this.todo));
+        var newTodo=Todo.clone(this.todo);
+        newTodo.todoId=this.list.length+1;
+        this.list = this.list.concat(newTodo);
         this.todo.clear();
     }
 
-    delTodo(todoIndex: number) {
+    onDelete(todoId: number) {
         this.list = this.list.filter(
-            (todo, index) => index !== todoIndex);
+            (todo, index) => todo.todoId !== todoId);
     }
 }

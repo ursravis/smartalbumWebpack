@@ -1,7 +1,7 @@
 <div class='panel panel-primary'>
     <div class='panel-heading'>
         {{pageTitle}}
-          <button class="btn btn-default pull-right" [routerLink]="['/project', -1]">New</button>
+          <button class="btn btn-default pull-right" [routerLink]="['/project', -1]" *ngIf="userService.isAdmin()" >New</button>
     </div>
 
     <!-- Filter the projects   -->

@@ -5,7 +5,7 @@ import { UserService } from './index';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class LoggedInGuard implements CanActivate,CanLoad {
+export class AdminGuard implements CanActivate,CanLoad {
   constructor(private userService: UserService,private router:Router) {
  
   }
@@ -19,7 +19,11 @@ export class LoggedInGuard implements CanActivate,CanLoad {
             this.router.navigate(['/login']);
             return false;
         }
-
+        else if(  !this.userService.isAdmin())   
+        {
+            this.router.navigate(['/401']);
+            return false;
+        }
         return true;
     }
      
@@ -29,7 +33,12 @@ export class LoggedInGuard implements CanActivate,CanLoad {
         if ( !this.userService.isLoggedIn() ) {
             this.router.navigate(['/login']);
             return false;
-        }       
+        }    
+        else if(  !this.userService.isAdmin())   
+        {
+            this.router.navigate(['/401']);
+            return false;
+        }
 
         return true;
     }

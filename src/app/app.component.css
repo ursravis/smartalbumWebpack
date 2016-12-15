@@ -84,3 +84,5 @@ div.panel-heading {
     font-size: 3em;
     color: color(primary);
 }
+.navbar-right
+ { margin-right: 0px !important}

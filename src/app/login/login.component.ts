@@ -2,8 +2,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from '../shared/index';
-import { User } from './index';
+import { UserService ,User} from '../shared/index';
+
 
 @Component({
   templateUrl: './login.component.html'
@@ -12,8 +12,8 @@ export class LoginComponent {
   user:User;
   constructor(private userService: UserService, private router: Router) {
     this.user=new User();
-    this.user.userName="test";
-    this.user.password="test";
+    this.user.userName="Admin";
+    this.user.password="Admin";
   }
 
   onSubmit():void {

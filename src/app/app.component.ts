@@ -4,7 +4,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
-
+import { UserService } from './shared/index';
 /*
  * App Component
  * Top Level Component
@@ -23,7 +23,7 @@ export class AppComponent {
   url = 'https://twitter.com/AngularClass';
 
   constructor(
-    public appState: AppState) {
+    public appState: AppState,private userService:UserService) {
 
   }
 

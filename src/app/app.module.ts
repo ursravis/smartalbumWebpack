@@ -16,7 +16,7 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
-import { NoContentComponent } from './no-content';
+import { NoContentComponent,UnAuthorizeComponent } from './no-content';
 import { XLarge } from './home/x-large';
 import { SharedModule } from './shared/index';
 import { LoginModule } from './login/index';
@@ -43,6 +43,7 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     NoContentComponent,
+    UnAuthorizeComponent,
     XLarge,
   ],
   imports: [ // import Angular's modules

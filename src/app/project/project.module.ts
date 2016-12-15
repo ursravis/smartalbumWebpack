@@ -5,11 +5,13 @@ import { projectRouting } from './project.routes';
 import { ProjectListComponent } from './project-list.component';
 import {ProjectDetailsComponent} from './project-details.component';
 import {ProjectService } from './project.service';
+import { SharedModule } from '../shared/index';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     projectRouting
   ],
   declarations: [
