@@ -17,13 +17,18 @@ npm install
 # start the server with dev build
 npm start
 
----build and run---
+go to http://0.0.0.0:3000 or http://localhost:3000 in your browser
+
 # development
 npm run build:dev
 
 npm run server:dev
 
+go to http://0.0.0.0:3000 or http://localhost:3000 in your browser
+
 # production
 npm run build:prod
 
 npm run server:prod
+
+go to http://0.0.0.0:8080 or http://localhost:8080 in your browser
