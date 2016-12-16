@@ -20,11 +20,13 @@ import { NoContentComponent,UnAuthorizeComponent } from './no-content';
 import { XLarge } from './home/x-large';
 import { SharedModule } from './shared/index';
 import { LoginModule } from './login/index';
+import {NotificationsService,NotificationComponent} from './notification/index';
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  NotificationsService
 ];
 
 type StoreType = {
@@ -44,6 +46,7 @@ type StoreType = {
     HomeComponent,
     NoContentComponent,
     UnAuthorizeComponent,
+    NotificationComponent,
     XLarge,
   ],
   imports: [ // import Angular's modules
