@@ -32,5 +32,27 @@
       <router-outlet></router-outlet>
   </div>
   <notifications></notifications>
+  	<button type="button" id="logoutModalButton" [hidden]="true" data-toggle="modal" data-target="#logoutModel">Open Modal</button>
+			<div id="logoutModel" class="modal modal-wide fade" role="dialog">
+				<div class="modal-dialog  modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Session Expired</h4>
+						</div>
+						<div class="modal-body">
+							<div >
+					Logged in User	Session Expired, Please relogin? 
+          <br/>
+          	<button type="button" class="btn btn-default" >Yes</button>
+            <button type="button" class="btn btn-default" >No</button>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
    

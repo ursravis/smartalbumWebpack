@@ -3,12 +3,16 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import {User} from "./index";
 import {Router} from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class UserService {
   private loggedIn = false;
   redirectURL: string;
   loggedInUser:User;
+     private authTimeOut = new Subject<User>();
+
+    public tokenExpired = this.authTimeOut.asObservable();
 
   constructor(private http: Http,private router:Router) {
     //this.loggedIn = false;
@@ -45,10 +49,16 @@ export class UserService {
       this.loggedInUser.role=userName;
        localStorage.setItem('profile', JSON.stringify(this.loggedInUser));
        localStorage.setItem('auth_token', 'testtoken');
+       this.checkTokenExpired();
       return this.redirectURL;
     }
     else
       return null;
+  }
+  checkTokenExpired()
+  {
+    //send dummy timeout after 20 secs
+      setTimeout(() => { this.authTimeOut.next(this.loggedInUser); }, 20000);
   }
   getAuthTokenHeader() {
     let headers = new Headers();
