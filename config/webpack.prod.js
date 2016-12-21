@@ -29,8 +29,8 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
-    API_URL: API_URL,
-  HMR: false
+    API_URL: API_URL
+
 });
 var path = require("path");
 const autoprefixer = require('autoprefixer');
@@ -122,12 +122,11 @@ resolveLoader: {moduleExtensions : ['-loader']},
       // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
       new DefinePlugin({
         'ENV': JSON.stringify(METADATA.ENV),
-        'HMR': METADATA.HMR,
+     
          'API_URL': JSON.stringify(METADATA.API_URL),
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
-          'NODE_ENV': JSON.stringify(METADATA.ENV),
-          'HMR': METADATA.HMR,
+          'NODE_ENV': JSON.stringify(METADATA.ENV),      
           'API_URL' : JSON.stringify(METADATA.API_URL),
         }
       }),
@@ -185,10 +184,6 @@ resolveLoader: {moduleExtensions : ['-loader']},
        * See: http://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin
        */
 
-      new NormalModuleReplacementPlugin(
-        /angular2-hmr/,
-        helpers.root('config/empty.js')
-      ),
 
       new NormalModuleReplacementPlugin(
         /zone\.js(\\|\/)dist(\\|\/)long-stack-trace-zone/,

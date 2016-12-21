@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
-import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -17,7 +16,6 @@ import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent, UnAuthorizeComponent } from './no-content';
-import { XLarge } from './home/x-large';
 import { SharedModule } from './shared/index';
 import { LoginModule } from './login/index';
 import { NotificationsService, NotificationComponent } from './notification/index';
@@ -30,24 +28,19 @@ import {
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState,
-  NotificationsService,
-  ErrorLogService,
-  LOGGING_ERROR_HANDLER_PROVIDERS,
-  {
-    provide: LOGGING_ERROR_HANDLER_OPTIONS,
-    useValue: {
-      rethrowError: false,
-      unwrapError: false
-    }
-  }
+  NotificationsService
+  // ErrorLogService,
+  // LOGGING_ERROR_HANDLER_PROVIDERS,
+  // {
+  //   provide: LOGGING_ERROR_HANDLER_OPTIONS,
+  //   useValue: {
+  //     rethrowError: false,
+  //     unwrapError: false
+  //   }
+  // }
 ];
 
-type StoreType = {
-  state: InternalStateType,
-  restoreInputValues: () => void,
-  disposeOldHosts: () => void
-};
+
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -56,12 +49,11 @@ type StoreType = {
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    AboutComponent,
     HomeComponent,
     NoContentComponent,
     UnAuthorizeComponent,
-    NotificationComponent,
-    XLarge,
+    NotificationComponent
+
   ],
   imports: [ // import Angular's modules
     BrowserModule,

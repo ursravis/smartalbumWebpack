@@ -22,15 +22,15 @@ export class AppComponent {
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
 
-  constructor(
-    public appState: AppState,private userService:UserService) {
+  constructor(private userService:UserService) {
+    console.log("app component");
 this.userService.tokenExpired.subscribe(user=>{
   //document.getElementById("logoutModalButton").click();
 });
   }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+    console.log("app component");
   }
 
 }

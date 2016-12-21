@@ -19,14 +19,13 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3000;
-const HMR = helpers.hasProcessFlag('hot');
+
 const API_URL = process.env.API_URL = 'http://smartalbumwebapi.azurewebsites.net/api/projects';
 const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
   host: HOST,
   port: PORT,
   API_URL: API_URL,
-  ENV: ENV,
-  HMR: HMR
+  ENV: ENV
 });
 var path = require("path");
 const autoprefixer = require('autoprefixer');
@@ -100,12 +99,12 @@ resolveLoader: {moduleExtensions : ['-loader']},
       // NOTE: when adding more properties, make sure you include them in custom-typings.d.ts
       new DefinePlugin({
         'ENV': JSON.stringify(METADATA.ENV),
-        'HMR': METADATA.HMR,
+     
          'API_URL': JSON.stringify(METADATA.API_URL),
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
-          'HMR': METADATA.HMR,
+  
            'API_URL' : JSON.stringify(METADATA.API_URL),
         }
       }),
