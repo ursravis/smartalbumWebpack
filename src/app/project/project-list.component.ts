@@ -15,12 +15,13 @@ export class ProjectListComponent implements OnInit {
     projects: IProject[];
 
     constructor(private _productService: ProjectService,private userService: UserService) {
- this.pageTitle = 'Project List: ' + userService.loggedInUser.firstName+' '+userService.loggedInUser.lastName;
+ this.pageTitle = 'Project List : ' + userService.loggedInUser.firstName+' '+userService.loggedInUser.lastName;
+
     }
 
    
 
-    ngOnInit(): void {
+    ngOnInit(): void {   
            this._productService.getProjects()
                      .subscribe(
                        projects => this.projects = projects,

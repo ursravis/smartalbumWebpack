@@ -22,7 +22,9 @@ export class TodolistComponent {
         ];
     }
 
-    addTodo() {
+    addTodo(event:Event) {
+        event.preventDefault();
+    
         var newTodo=Todo.clone(this.todo);
         newTodo.todoId=this.list.length+1;
         this.list = this.list.concat(newTodo);

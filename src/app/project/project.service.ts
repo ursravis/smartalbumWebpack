@@ -6,6 +6,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/observable/throw';
 import { IProject } from './project';
 
 @Injectable()
@@ -18,6 +19,7 @@ private headers = new Headers({'Content-Type': 'application/json'});
     }
 
     getProjects(): Observable<IProject[]> {
+       
         return this._http.get(this._projectUrl)
             .map((response: Response) => <IProject[]> response.json())
             .do(data => console.log('All: ' ))
@@ -56,7 +58,8 @@ private headers = new Headers({'Content-Type': 'application/json'});
     private handleError(error: Response) {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console
-        console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
+        //console.error(error);
+       
+        return Observable.throw(error || 'Server error');
     }
 }

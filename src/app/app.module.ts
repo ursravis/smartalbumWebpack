@@ -16,17 +16,31 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
-import { NoContentComponent,UnAuthorizeComponent } from './no-content';
+import { NoContentComponent, UnAuthorizeComponent } from './no-content';
 import { XLarge } from './home/x-large';
 import { SharedModule } from './shared/index';
 import { LoginModule } from './login/index';
-import {NotificationsService,NotificationComponent} from './notification/index';
+import { NotificationsService, NotificationComponent } from './notification/index';
+import {
+  ErrorLogService,
+  LOGGING_ERROR_HANDLER_OPTIONS,
+  LOGGING_ERROR_HANDLER_PROVIDERS
+} from './infra/index';
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  NotificationsService
+  NotificationsService,
+  ErrorLogService,
+  LOGGING_ERROR_HANDLER_PROVIDERS,
+  {
+    provide: LOGGING_ERROR_HANDLER_OPTIONS,
+    useValue: {
+      rethrowError: false,
+      unwrapError: false
+    }
+  }
 ];
 
 type StoreType = {
@@ -39,7 +53,7 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     AboutComponent,
@@ -54,8 +68,8 @@ type StoreType = {
     FormsModule,
     HttpModule,
     LoginModule,
-    RouterModule.forRoot(ROUTES, {  }),
-     SharedModule.forRoot()
+    RouterModule.forRoot(ROUTES, {}),
+    SharedModule.forRoot()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
@@ -63,42 +77,7 @@ type StoreType = {
   ]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef, public appState: AppState) {}
-
-  hmrOnInit(store: StoreType) {
-    if (!store || !store.state) return;
-    console.log('HMR store', JSON.stringify(store, null, 2));
-    // set state
-    this.appState._state = store.state;
-    // set input values
-    if ('restoreInputValues' in store) {
-      let restoreInputValues = store.restoreInputValues;
-      setTimeout(restoreInputValues);
-    }
-
-    this.appRef.tick();
-    delete store.state;
-    delete store.restoreInputValues;
-  }
-
-  hmrOnDestroy(store: StoreType) {
-    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    // save state
-    const state = this.appState._state;
-    store.state = state;
-    // recreate root elements
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-    // save input values
-    store.restoreInputValues  = createInputTransfer();
-    // remove styles
-    removeNgStyles();
-  }
-
-  hmrAfterDestroy(store: StoreType) {
-    // display new elements
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
-  }
+ 
 
 }
 

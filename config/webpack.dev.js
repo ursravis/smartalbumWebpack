@@ -88,7 +88,6 @@ resolveLoader: {moduleExtensions : ['-loader']},
     },
 
     plugins: [
-
       /**
        * Plugin: DefinePlugin
        * Description: Define free variables.

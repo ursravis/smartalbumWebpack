@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <form (submit)="addTodo()" #todoForm="ngForm">
+                <form (submit)="addTodo($event)" #todoForm="ngForm">
                     <label for="todo">To Do</label>
                     <span [hidden]="todo.name.valid" class="badge badge-warning">Required</span>
                     <div class="form-inline">
