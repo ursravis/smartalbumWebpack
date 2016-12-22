@@ -39,7 +39,7 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            <ul class="list-group">
+            <ul class="list-group" [dragula]='"bag-one"' [dragulaModel]='list'>
                 <li *ngFor="let toDo of (list | asCompletedFilter:showCompleted); let i=index" class="list-group-item">
               <todo-view [todo]="toDo" (onDeleted)="onDelete($event)"></todo-view>
                 </li>

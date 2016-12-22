@@ -22,6 +22,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'jquery';
 import 'bootstrap-loader';
 import 'font-awesome-sass-loader';
+import 'ng2-dragula';
+import 'dragula/dist/dragula.css'
 
 if ('production' === ENV) {
   // Production
