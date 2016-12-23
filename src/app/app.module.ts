@@ -28,16 +28,16 @@ import {
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  NotificationsService
-  // ErrorLogService,
-  // LOGGING_ERROR_HANDLER_PROVIDERS,
-  // {
-  //   provide: LOGGING_ERROR_HANDLER_OPTIONS,
-  //   useValue: {
-  //     rethrowError: false,
-  //     unwrapError: false
-  //   }
-  // }
+  NotificationsService,
+  ErrorLogService,
+  LOGGING_ERROR_HANDLER_PROVIDERS,
+  {
+    provide: LOGGING_ERROR_HANDLER_OPTIONS,
+    useValue: {
+      rethrowError: false,
+      unwrapError: false
+    }
+  }
 ];
 
 
