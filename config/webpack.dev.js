@@ -9,24 +9,12 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
 /**
  * Webpack Plugins
  */
-const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-
 /**
  * Webpack Constants
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 3000;
-
-const API_URL = process.env.API_URL = 'http://smartalbumwebapi.azurewebsites.net/api/projects';
-const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
-  host: HOST,
-  port: PORT,
-  API_URL: API_URL,
-  ENV: ENV
-});
 var path = require("path");
 const autoprefixer = require('autoprefixer');
 /**
@@ -35,7 +23,8 @@ const autoprefixer = require('autoprefixer');
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function (options) {
-  return webpackMerge(commonConfig({env: ENV}), {
+  
+  return webpackMerge(commonConfig({env: ENV,variablesFile:options.variablesFile}), {
 resolveLoader: {moduleExtensions : ['-loader']},
     /**
      * Developer tool to enhance debugging
@@ -87,27 +76,7 @@ resolveLoader: {moduleExtensions : ['-loader']},
     },
 
     plugins: [
-      /**
-       * Plugin: DefinePlugin
-       * Description: Define free variables.
-       * Useful for having development builds with debug logging or adding global constants.
-       *
-       * Environment helpers
-       *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-       */
-      // NOTE: when adding more properties, make sure you include them in custom-typings.d.ts
-      new DefinePlugin({
-        'ENV': JSON.stringify(METADATA.ENV),
      
-         'API_URL': JSON.stringify(METADATA.API_URL),
-        'process.env': {
-          'ENV': JSON.stringify(METADATA.ENV),
-          'NODE_ENV': JSON.stringify(METADATA.ENV),
-  
-           'API_URL' : JSON.stringify(METADATA.API_URL),
-        }
-      }),
 
       /**
        * Plugin: NamedModulesPlugin (experimental)
@@ -146,8 +115,8 @@ resolveLoader: {moduleExtensions : ['-loader']},
      * See: https://webpack.github.io/docs/webpack-dev-server.html
      */
     devServer: {
-      port: METADATA.port,
-      host: METADATA.host,
+      port: 3000,
+      host: "localhost",
       historyApiFallback: true,
       watchOptions: {
         aggregateTimeout: 300,

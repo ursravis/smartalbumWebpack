@@ -20,6 +20,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin'); 
+const DefinePlugin = require('webpack/lib/DefinePlugin');
+
 /*
  * Webpack Constants
  */
@@ -36,6 +38,8 @@ const METADATA = {
  */
 module.exports = function (options) {
   isProd = options.env === 'production';
+
+  var envMap=JSON.stringify(require('./EnvVariables/'+options.variablesFile));
   return {
 
     /*
@@ -159,6 +163,22 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
+ /**
+       * Plugin: DefinePlugin
+       * Description: Define free variables.
+       * Useful for having development builds with debug logging or adding global constants.
+       *
+       * Environment helpers
+       *
+       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+       */
+      // NOTE: when adding more properties, make sure you include them in custom-typings.d.ts
+      new DefinePlugin({
+        ENV:JSON.stringify(options.env),
+       'process.env': envMap
+      }),
+
+
       new AssetsPlugin({
         path: helpers.root('dist'),
         filename: 'webpack-assets.json',
