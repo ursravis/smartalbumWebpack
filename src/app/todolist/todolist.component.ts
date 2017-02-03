@@ -15,10 +15,11 @@ export class TodolistComponent {
 
     constructor(private notificationsService: NotificationsService) {
         this.showCompleted = true;
-        this.todo = new Todo('Add me to list!', false,0);
+        this.todo = new Todo('Add me to list!', false,0,'high');
         this.list = [
-            new Todo('Its cool',false,1),
-            new Todo('Hello', true,2)
+            new Todo('Its cool',false,1,'high'),
+            new Todo('Hello', true,2,'low'),
+            new Todo('Middle', true,3,'medium')
         ];
     }
 
